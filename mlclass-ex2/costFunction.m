@@ -20,10 +20,18 @@ grad = zeros(size(theta));
 % Note: grad should have the same dimensions as theta
 %
 
+thetaTX = X * theta;
+hypoth = sigmoid(thetaTX);
+
+%fprintf('Printing hypothesis followed by J \n');
 
 
+J = 1/m * (-1 * y' * log(hypoth) -1*(1-y') * log(1-hypoth));
 
+grad =1/m * (X' * (hypoth - y));
 
+%fprintf('Printing Gradient \n');
+grad
 
 
 
