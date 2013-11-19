@@ -36,17 +36,30 @@ grad = zeros(size(theta));
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
 
+thetaTX = X * theta;
+hypoth = sigmoid(thetaTX);
+
+%fprintf('Printing hypothesis followed by J \n');
+
+regJ = (sum(theta(2:end).^2)) * (lambda/(2*m));
+
+J = (1/m) * (-1 * y' * log(hypoth) -(1-y') * log(1-hypoth)) + regJ;
+
+regGrad = lambda/m * theta;
+
+grad =1/m * (X' * (hypoth - y));
 
 
+grad(2:length(grad)) = grad(2:length(grad)) + regGrad(2:length(regGrad));
+%fprintf('After Lambda updata:\n')
 
 
-
-
+%fprintf('Printing Gradient \n');
 
 
 
 % =============================================================
 
-grad = grad(:);
+%grad = grad(:);
 
 end
