@@ -14,8 +14,11 @@ function [J grad] = nnCostFunction(nn_params, ...
 %   partial derivatives of the neural network.
 %
 
+
 % Reshape nn_params back into the parameters Theta1 and Theta2, the weight matrices
 % for our 2 layer neural network
+
+
 Theta1 = reshape(nn_params(1:hidden_layer_size * (input_layer_size + 1)), ...
                  hidden_layer_size, (input_layer_size + 1));
 
@@ -63,22 +66,76 @@ Theta2_grad = zeros(size(Theta2));
 %
 
 
+		  %%%%%%% Part I: Feedforward %%%%%%%
+
+X = [ones(size(X, 1), 1) X]; % Adding X0 to X - 5000 x 401
+
+%%%
+
+z2 = X * Theta1';
+a2 = sigmoid(z2); % a2 - hidden layer values 5000 x 25
+
+a2 = [ones(size(a2, 1), 1) a2]; % Adding unit 0 into the hidden layer -  5000 x 26
+
+%%%
+
+z3 = a2 * Theta2';
+a3 = sigmoid(z3);
+
+h = a3;
+
+%%%%%%%%%%%%%%% Part II - Cost Function %%%% %%%%%%%%%%%
+
+%%% Converting y to a 5000 x 10 matrix 
+
+y_mtx = eye(num_labels)(y,:);
+
+term1 = -y_mtx .* log(h);
+
+temp23 = 1-h;
+temp25 = 1-y_mtx;
+
+term2 = temp25.* log(temp23);
+
+J = term1 - term2;
+J = sum(sum(J))/m;
+
+
+%%%%%%%%%%% Part III - Regularization of the Cost Function %%%%%%%
+
+fprintf('Regularization terms added ...');
+
+Theta1_reg = sum(sum(Theta1(:,2:end) .^ 2))
+Theta2_reg = sum(sum(Theta2(:,2:end) .^ 2))
+
+J += 1/(2*m) * lambda * (Theta1_reg + Theta2_reg);
 
 
 
+%%%%%%%%%%% Part IV - Backward Propagation %%%%%%%%%%%%%
+
+fprintf('PART IV - Backward Propagation \n *********** \n');
+
+delta_3 = a3 - y_mtx;
+
+size(delta_3)
+size(Theta2)
+
+delta_2 = (delta_3 * Theta2(:,2:end)) .* sigmoidGradient(z2);
+
+size(delta_2)
+
+%Delta = sum(sum(delta_2)) + sum(sum(delta_3))
+
+t1 = Theta1(:,2:end) * lambda;
+t2 = Theta2(:,2:end) * lambda;
 
 
+Theta1_grad = delta_2' * X;
+Theta2_grad = delta_3' * a2;
 
-
-
-
-
-
-
-
-
-
-
+size(Theta1_grad)
+size(Theta2_grad)
 
 % -------------------------------------------------------------
 

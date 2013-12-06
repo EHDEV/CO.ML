@@ -19,12 +19,9 @@ W = zeros(L_out, 1 + L_in);
 % Note: The first row of W corresponds to the parameters for the bias units
 %
 
+eps_init =0.12; %sqrt(6)./(sqrt(L_in + L_out));
 
-
-
-
-
-
+W = (rand(L_out, L_in + 1) * (2 * eps_init)) - eps_init;
 
 
 % =========================================================================
