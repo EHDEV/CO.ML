@@ -12,7 +12,7 @@ m = length(y); % number of training examples
 J = 0;
 grad = zeros(size(theta));
 
-thetaTX = X * theta';
+thetaTX = X * theta;
 hypoth = sigmoid(thetaTX);
 size(hypoth)
 %fprintf('Printing hypothesis followed by J \n');
