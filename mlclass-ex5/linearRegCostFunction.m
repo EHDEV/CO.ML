@@ -28,15 +28,15 @@ reg_term = (sum(theta(2:end) .^2) * (lambda/(2*m)));
 
 J = ((1/(2*m)) * sq_err) + reg_term;
 
-grad_derv = theta(2:end) * (lambda/m);
+grad_derv = theta(2:end) * (lambda/m)
 size(grad_derv)
 
-grad = sum(((h - y) .^ 2)' * X, 1);
+grad = (h - y)' * X;
 
+#gr_tmp = grad(:,2:end) + grad_derv
 
-
-grad = [grad grad(:,2:end) + grad_derv]; 
-grad = grad'
+#grad = [grad(:,1) gr_tmp];
+#grad = grad'
 
  
 
