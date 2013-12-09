@@ -30,9 +30,14 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
+thetaX = X * all_theta';
 
-
-
+[temp_v, temp_i] = max(thetaX');
+%thetaX(1:5,1:3)
+fprintf("Temp \n");
+%temp_i(4000:4025)
+%temp_v
+p = temp_i';
 
 
 
