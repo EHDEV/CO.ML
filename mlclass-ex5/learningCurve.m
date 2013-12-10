@@ -55,23 +55,33 @@ error_val   = zeros(m, 1);
 % Validation Error
 
 
-theta = trainLinearReg(X, y, lambda);
-hval = Xval * theta;
+#{theta = trainLinearReg(X, y, lambda);
+#hval = Xval * theta;
 
-error_val = (1/(2*m)) * (hval - yval)
-error_val = error_val(1:m);
+#error_val = (1/(2*m)) * (hval - yval)
+#error_val = error_val(1:m);
+#}
 % Training Error
 fprintf("Training Error.... \n");
-for i = 1:m
+#{for i = 1:m
  
-  h_test = X(1:i,:) * theta;
-  h_val = Xval * theta;
-  vsq_err = h_val - yval;
-  tsq_err = h_test - y(1:i);
-  error_train(i) = (1/(2*i)) * sum(tsq_err);
-  error_val(i) = (1/(2*m)) * sum(vsq_err);
+#  h_test = X(1:i,:) * theta;
+ # h_val = Xval * theta;
+  #vsq_err = h_val - yval;
+  #tsq_err = h_test - y(1:i);
+  #error_train(i) = (1/(2*i)) * sum(tsq_err);
+  #error_val(i) = (1/(2*m)) * sum(vsq_err);
 % -------------------------------------------------------------
 % =========================================================================
+#end
+#}
+
+for i = 1:m
+
+  theta = trainLinearReg(X(1:i,:), y(1:i), lambda);
+  error_train(i) = linearRegCostFunction(X(1:i,:), y(1:i), theta, 0);
+  error_val(i) = linearRegCostFunction(Xval, yval, theta, 0);
+
 end
 fprintf("Validation Error.... \n");
 %size(yval)
@@ -83,12 +93,12 @@ fprintf("Validation Error.... \n");
 
 % Validation Error
 %            
+#{
+#theta = trainLinearReg(X, y, lambda);
+#hval = Xval * theta;
 
-theta = trainLinearReg(X, y, lambda);
-hval = Xval * theta;
+#error_val = (1/(2*m)) * (hval - yval)
+#error_val = error_val(1:m);
 
-error_val = (1/(2*m)) * (hval - yval)
-error_val = error_val(1:m);
-
-
+#}
 end
