@@ -52,15 +52,43 @@ error_val   = zeros(m, 1);
 %
 
 % ---------------------- Sample Solution ----------------------
+% Validation Error
 
 
+theta = trainLinearReg(X, y, lambda);
+hval = Xval * theta;
 
-
-
-
-
+error_val = (1/(2*m)) * (hval - yval)
+error_val = error_val(1:m);
+% Training Error
+fprintf("Training Error.... \n");
+for i = 1:m
+ 
+  h_test = X(1:i,:) * theta;
+  h_val = Xval * theta;
+  vsq_err = h_val - yval;
+  tsq_err = h_test - y(1:i);
+  error_train(i) = (1/(2*i)) * sum(tsq_err);
+  error_val(i) = (1/(2*m)) * sum(vsq_err);
 % -------------------------------------------------------------
-
 % =========================================================================
+end
+fprintf("Validation Error.... \n");
+%size(yval)
+%size(Xval)
+%size(error_val)
+%size(error_train)
+%size(X)
+%size(y)
+
+% Validation Error
+%            
+
+theta = trainLinearReg(X, y, lambda);
+hval = Xval * theta;
+
+error_val = (1/(2*m)) * (hval - yval)
+error_val = error_val(1:m);
+
 
 end

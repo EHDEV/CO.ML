@@ -18,24 +18,27 @@ grad = zeros(size(theta));
 %
 %               You should set J to the cost and grad to the gradient.
 %
-size(theta)
+%size(theta)
 
 h = X * theta;
 
-sq_err = sum((h - y) .^ 2) 
+sq_err = sum((h - y) .^ 2);
 
 reg_term = (sum(theta(2:end) .^2) * (lambda/(2*m)));
 
 J = ((1/(2*m)) * sq_err) + reg_term;
 
-grad_derv = theta(2:end) * (lambda/m)
-size(grad_derv)
+%%% Part 2 - Derivatives %%%
+%fprintf("Derivatives ....... \n");
+grad_derv = theta * (lambda/m);
+%size(grad_derv)
 
-grad = (h - y)' * X;
+grad = 1/m * (X' * (h-y));
+%size(grad)
+%gr_tmp = grad(2:end) + grad_derv
 
-#gr_tmp = grad(:,2:end) + grad_derv
-
-#grad = [grad(:,1) gr_tmp];
+grad(2:end) = grad(2:end) + grad_derv(2:end);
+%size(grad)
 #grad = grad'
 
  
