@@ -118,12 +118,7 @@ fprintf('PART IV - Backward Propagation \n *********** \n');
 
 delta_3 = a3 - y_mtx;
 
-size(delta_3)
-size(Theta2)
-
 delta_2 = (delta_3 * Theta2(:,2:end)) .* sigmoidGradient(z2);
-
-size(delta_2)
 
 %Delta = sum(sum(delta_2)) + sum(sum(delta_3))
 
@@ -131,8 +126,18 @@ t1 = Theta1(:,2:end) * lambda;
 t2 = Theta2(:,2:end) * lambda;
 
 
-Theta1_grad = delta_2' * X;
-Theta2_grad = delta_3' * a2;
+reg_1 = Theta1(:,2:end) * lambda * 1/m;
+size(reg_1)
+reg_2 = Theta2(:,2:end) * lambda * 1/m;
+size(reg_2)
+
+Theta1_grad = delta_2' * X * (1/m);
+Theta2_grad = (delta_3' * a2 * (1/m)); 
+
+fprintf("Regularization ******************************* _____________");
+Theta1_grad = [Theta1_grad(:, 1) Theta1_grad(:,2:end) + reg_1]; %Adding Regularization terms
+
+Theta2_grad = [Theta2_grad(:,1) Theta2_grad(:,2:end) + reg_2];
 
 size(Theta1_grad)
 size(Theta2_grad)
