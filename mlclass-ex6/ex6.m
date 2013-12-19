@@ -50,7 +50,11 @@ fprintf('\nTraining Linear SVM ...\n')
 
 % You should try to change the C value below and see how the decision
 % boundary varies (e.g., try C = 1000)
+<<<<<<< HEAD
 C = 50;
+=======
+C = 1;
+>>>>>>> 0c5580e2ed6079bb05def9a11e4d2eea1f9aac80
 model = svmTrain(X, y, C, @linearKernel, 1e-3, 20);
 visualizeBoundaryLinear(X, y, model);
 

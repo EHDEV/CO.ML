@@ -8,7 +8,11 @@ function [C, sigma] = dataset3Params(X, y, Xval, yval)
 %
 
 % You need to return the following variables correctly.
+<<<<<<< HEAD
 C = .01;
+=======
+C = 1;
+>>>>>>> 0c5580e2ed6079bb05def9a11e4d2eea1f9aac80
 sigma = 0.3;
 
 % ====================== YOUR CODE HERE ======================
@@ -22,6 +26,7 @@ sigma = 0.3;
 %  Note: You can compute the prediction error using 
 %        mean(double(predictions ~= yval))
 %
+<<<<<<< HEAD
 Xval2 = Xval;
 X2 = X;
 sigmas = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
@@ -53,3 +58,15 @@ sigma = er_val(idx, 1)
 C = er_val(idx, 2)
 
 end
+=======
+
+
+
+
+
+
+
+% =========================================================================
+
+end
+>>>>>>> 0c5580e2ed6079bb05def9a11e4d2eea1f9aac80

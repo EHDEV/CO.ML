@@ -48,6 +48,7 @@ x = zeros(n, 1);
 %
 %
 
+<<<<<<< HEAD
 for idx = word_indices
   x(idx) = 1;
   size(x)
@@ -55,6 +56,8 @@ end
 
 
 
+=======
+>>>>>>> 0c5580e2ed6079bb05def9a11e4d2eea1f9aac80
 
 
 

@@ -95,6 +95,7 @@ while ~isempty(email_contents)
     % 
     % Note: You can use strcmp(str1, str2) to compare two strings (str1 and
     %       str2). It will return 1 only if the two strings are equivalent.
+<<<<<<< HEAD
     
    
     i = find(ismember(vocabList,str));
@@ -104,6 +105,12 @@ while ~isempty(email_contents)
 	end
     
     
+=======
+    %
+
+
+
+>>>>>>> 0c5580e2ed6079bb05def9a11e4d2eea1f9aac80
 
 
 
