@@ -20,8 +20,18 @@ idx = zeros(size(X,1), 1);
 %
 % Note: You can use a for-loop over the examples to compute this.
 %
+m = size(X, 1);
+tmp = zeros(K, 1);
 
+for i = 1:m
+ for k = 1:K
+  tmp(k) =sqrt(sum(((X(i,:) - centroids(k,:)) .^ 2), 2));
+  end
 
+  [val,val_idx] = min(tmp, [], 1);
+ idx(i) = val_idx;
+
+end
 
 
 
